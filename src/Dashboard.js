@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const DownloadData = () => (
 	<div className='section'>
@@ -28,9 +29,11 @@ const ModifySurveySection = () => (
 		<h4 className='title is-4'>Edit survey questions and responses</h4>
 		<div className='field'>
 			<p className='control'>
-				<button className='button is-primary'>
-					Modify or delete questions
-				</button>
+				<Link to='/survey'>
+					<button className='button is-primary'>
+						Modify or delete questions
+					</button>
+				</Link>
 			</p>
 		</div>
 		<div className='field'>
