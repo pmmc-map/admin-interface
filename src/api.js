@@ -1,5 +1,9 @@
 const BASE_API_URL = 'http://127.0.0.1:5000';
 
+/*
+ * survey functions
+ */
+
 export const getAllQuestions = async () => {
 	const response = await fetch(BASE_API_URL + '/api/questions', {
 		method: 'GET',
@@ -84,6 +88,29 @@ export const addNewOption = async (qid, optionText) => {
 		},
 		body: JSON.stringify({
 			text: optionText,
+		}),
+		withCredentials: true,
+	});
+
+	const json = await response.json();
+	const successResponse = await json.success;
+	return successResponse;
+};
+
+/*
+ * email
+ */
+
+export const sendEmail = async email => {
+	const response = await fetch(BASE_API_URL + '/admin/email', {
+		method: 'POST',
+		mode: 'cors',
+		headers: {
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Origin': '*',
+		},
+		body: JSON.stringify({
+			email_address: email,
 		}),
 		withCredentials: true,
 	});
