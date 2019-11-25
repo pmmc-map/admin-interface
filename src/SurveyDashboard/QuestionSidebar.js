@@ -8,7 +8,7 @@ const Option = ({ qid, text, onClick, isSelected }) => (
 	>
 		<span className='panel-icon'>
 			<i className='fas fa-book' aria-hidden='true'>
-				{qid}
+				{' '}
 			</i>
 		</span>
 		{text}

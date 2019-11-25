@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import { getAllQuestions } from '../api';
 import QuestionSidebar from './QuestionSidebar';
 import QuestionDetail from './QuestionDetail';
@@ -26,12 +28,17 @@ const SurveyDashboard = () => {
 
 	return (
 		<div className='section'>
+			<p>
+				<Link to='/dashboard' className='has-text-primary'>
+					Return to admin dashboard
+				</Link>
+			</p>
 			<h1 className='subtitle is-1'>
 				Modify or delete existing survey questions
 			</h1>
 			<p>Select a question below to edit</p>
 			<hr />
-			<div className='columns'>
+			<div className='columns is-4'>
 				<div className='column'>
 					<QuestionSidebar
 						questions={questions}

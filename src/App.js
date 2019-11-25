@@ -5,6 +5,7 @@ import 'bulma/css/bulma.css';
 import Login from './Login';
 import Dashboard from './Dashboard';
 import SurveyDashboard from './SurveyDashboard';
+import AddSurveyQuestion from './AddSurveyQuestion';
 
 const App = () => {
 	return (
@@ -20,7 +21,8 @@ const App = () => {
 				<Switch>
 					<Route path='/login' component={Login} />
 					<Route path='/dashboard' component={Dashboard} />
-					<Route path='/survey' component={SurveyDashboard} />
+					<Route exact path='/survey' component={SurveyDashboard} />
+					<Route path='/survey/new' component={AddSurveyQuestion} />
 				</Switch>
 			</BrowserRouter>
 		</>

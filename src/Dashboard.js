@@ -38,7 +38,11 @@ const ModifySurveySection = () => (
 		</div>
 		<div className='field'>
 			<p className='control'>
-				<button className='button is-primary'>Add new question</button>
+				<Link to='/survey/new'>
+					<button className='button is-primary'>
+						Add new question
+					</button>
+				</Link>
 			</p>
 		</div>
 	</div>
