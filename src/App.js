@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 import 'bulma/css/bulma.css';
 
 import Login from './Login';
@@ -9,23 +9,23 @@ import AddSurveyQuestion from './AddSurveyQuestion';
 
 const App = () => {
 	return (
-		<>
+		<BrowserRouter>
 			<header className='hero is-primary'>
 				<div className='hero-body'>
 					<div className='container'>
-						<h1 className='title'>Map App Admin</h1>
+						<Link to='/dashboard'>
+							<h1 className='title'>Map App Admin</h1>
+						</Link>
 					</div>
 				</div>
 			</header>
-			<BrowserRouter>
-				<Switch>
-					<Route path='/login' component={Login} />
-					<Route path='/dashboard' component={Dashboard} />
-					<Route exact path='/survey' component={SurveyDashboard} />
-					<Route path='/survey/new' component={AddSurveyQuestion} />
-				</Switch>
-			</BrowserRouter>
-		</>
+			<Switch>
+				<Route path='/login' component={Login} />
+				<Route path='/dashboard' component={Dashboard} />
+				<Route exact path='/survey' component={SurveyDashboard} />
+				<Route path='/survey/new' component={AddSurveyQuestion} />
+			</Switch>
+		</BrowserRouter>
 	);
 };
 
