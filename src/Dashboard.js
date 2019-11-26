@@ -36,10 +36,7 @@ const DownloadData = () => {
 					/>
 				</p>
 				<p className='control'>
-					<button
-						className='button is-primary'
-						onClick={onSubmitEmail}
-					>
+					<button className='button is-info' onClick={onSubmitEmail}>
 						Submit
 					</button>
 				</p>
@@ -60,7 +57,7 @@ const ModifySurveySection = () => (
 		<div className='field'>
 			<p className='control'>
 				<Link to='/survey'>
-					<button className='button is-primary'>
+					<button className='button is-info'>
 						Modify or delete questions
 					</button>
 				</Link>
@@ -69,9 +66,7 @@ const ModifySurveySection = () => (
 		<div className='field'>
 			<p className='control'>
 				<Link to='/survey/new'>
-					<button className='button is-primary'>
-						Add new question
-					</button>
+					<button className='button is-info'>Add new question</button>
 				</Link>
 			</p>
 		</div>
@@ -146,7 +141,7 @@ const AddAnimalSection = () => (
 			<div className='field-body'>
 				<div className='field is-narrow'>
 					<div className='control is-fullwidth'>
-						<button className='button is-primary'>Submit</button>
+						<button className='button is-info'>Submit</button>
 					</div>
 				</div>
 			</div>

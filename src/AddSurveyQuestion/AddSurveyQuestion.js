@@ -1,9 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+
 import NewQuestionForm from './NewQuestionForm';
 
 const AddSurveyQuestion = () => {
 	return (
 		<div className='section'>
+			<p>
+				<Link to='/dashboard' className='has-text-info'>
+					Return to admin dashboard
+				</Link>
+			</p>
 			<h1 className='subtitle is-1'>Add new survey question</h1>
 			<hr />
 			<div className='columns is-4'>

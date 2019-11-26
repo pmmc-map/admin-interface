@@ -154,7 +154,7 @@ const NewQuestionForm = () => {
 					<div className='field is-narrow'>
 						<div className='control is-fullwidth'>
 							<button
-								className='button is-primary'
+								className='button is-info'
 								onClick={onSubmit}
 							>
 								Submit

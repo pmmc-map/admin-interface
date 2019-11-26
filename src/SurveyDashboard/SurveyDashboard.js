@@ -29,7 +29,7 @@ const SurveyDashboard = () => {
 	return (
 		<div className='section'>
 			<p>
-				<Link to='/dashboard' className='has-text-primary'>
+				<Link to='/dashboard' className='has-text-info'>
 					Return to admin dashboard
 				</Link>
 			</p>
