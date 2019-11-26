@@ -6,19 +6,12 @@ import Login from './Login';
 import Dashboard from './Dashboard';
 import SurveyDashboard from './SurveyDashboard';
 import AddSurveyQuestion from './AddSurveyQuestion';
+import Navbar from './components/Navbar';
 
 const App = () => {
 	return (
 		<BrowserRouter>
-			<header className='hero is-primary'>
-				<div className='hero-body'>
-					<div className='container'>
-						<Link to='/dashboard'>
-							<h1 className='title'>Map App Admin</h1>
-						</Link>
-					</div>
-				</div>
-			</header>
+			<Navbar />
 			<Switch>
 				<Route path='/login' component={Login} />
 				<Route path='/dashboard' component={Dashboard} />
