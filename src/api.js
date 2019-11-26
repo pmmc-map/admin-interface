@@ -119,3 +119,22 @@ export const sendEmail = async email => {
 	const successResponse = await json.success;
 	return successResponse;
 };
+
+/*
+ * login
+ */
+export const googleLogin = async resp => {
+	const response = await fetch(BASE_API_URL + '/flask/auth', {
+		// method: 'POST',
+		// mode: 'cors',
+		headers: {
+			'Content-Type': 'application/json',
+			// 'Access-Control-Allow-Origin': '*',
+			Authorization: JSON.stringify(resp),
+		},
+		// withCredentials: true,
+	});
+
+	const json = await response.json();
+	return json;
+};
