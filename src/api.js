@@ -1,6 +1,33 @@
 const BASE_API_URL = 'http://127.0.0.1:5000';
 
 /*
+ * add seal information
+ */
+export const addNewRescue = async (name, location, year, type, notes) => {
+	const response = await fetch(BASE_API_URL + '/api/animal_locations', {
+		method: 'POST',
+		mode: 'cors',
+		headers: {
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Origin': '*',
+		},
+		body: JSON.stringify({
+			animal_name: name,
+			location_name: location,
+			placement_year: year,
+			animal_type: type,
+			animal_notes: notes,
+			lat: 0,
+			long: 0,
+		}),
+		withCredentials: true,
+	});
+	const json = await response.json();
+	const successResponse = await json.success;
+	return successResponse;
+};
+
+/*
  * survey functions
  */
 
