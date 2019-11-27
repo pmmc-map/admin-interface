@@ -7,6 +7,7 @@ import Dashboard from './Dashboard';
 import SurveyDashboard from './SurveyDashboard';
 import AddSurveyQuestion from './AddSurveyQuestion';
 import Navbar from './components/Navbar';
+import AuthRoute from './AuthRoute';
 
 const App = () => {
 	return (
@@ -14,9 +15,9 @@ const App = () => {
 			<Navbar />
 			<Switch>
 				<Route path='/login' component={Login} />
-				<Route path='/dashboard' component={Dashboard} />
-				<Route exact path='/survey' component={SurveyDashboard} />
-				<Route path='/survey/new' component={AddSurveyQuestion} />
+				<AuthRoute path='/dashboard' component={Dashboard} />
+				<AuthRoute exact path='/survey' component={SurveyDashboard} />
+				<AuthRoute path='/survey/new' component={AddSurveyQuestion} />
 			</Switch>
 		</BrowserRouter>
 	);
