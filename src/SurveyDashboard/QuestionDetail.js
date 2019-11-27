@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { getQuestionOptions, updateQuestionText, deleteQuestion } from '../api';
 import DeleteQuestion from './DeleteQuestion';
 
-const QuestionEdit = ({ text, onSubmit }) => {
+const QuestionEdit = ({ text, onSubmit, hasError }) => {
 	const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
 	const [newQuestion, setNewQuestion] = useState('');
 
@@ -21,7 +21,9 @@ const QuestionEdit = ({ text, onSubmit }) => {
 				<div className='field '>
 					<div className='control is-fullwidth'>
 						<textarea
-							className='textarea'
+							className={`textarea${
+								hasError ? ' is-danger' : ''
+							}`}
 							placeholder={text}
 							onChange={e =>
 								setNewQuestion(e.target.value.trim())
@@ -48,6 +50,7 @@ const QuestionEdit = ({ text, onSubmit }) => {
 QuestionEdit.propTypes = {
 	text: PropTypes.string.isRequired,
 	onSubmit: PropTypes.func.isRequired,
+	hasError: PropTypes.bool.isRequired,
 };
 
 const OptionsList = ({ options }) => (
@@ -137,7 +140,11 @@ const QuestionDetail = ({ qid, text }) => {
 
 	return (
 		<>
-			<QuestionEdit text={text} onSubmit={onSubmitQuestion} />
+			<QuestionEdit
+				text={text}
+				onSubmit={onSubmitQuestion}
+				hasError={errorText}
+			/>
 			<p className='has-text-success'>{successText}</p>
 			<p className='has-text-danger'>{errorText}</p>
 			<OptionsList options={options} />

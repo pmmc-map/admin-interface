@@ -27,7 +27,7 @@ const DataDownloadForm = () => {
 			<div className='field is-grouped'>
 				<p className='control'>
 					<input
-						className='input'
+						className={`input${errorText ? ' is-danger' : ''}`}
 						type='email'
 						placeholder='email@email.com'
 						onChange={e => setEmail(e.target.value.trim())}
