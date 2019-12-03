@@ -7,7 +7,7 @@ import Dashboard from './Dashboard';
 import SurveyDashboard from './SurveyDashboard';
 import AddSurveyQuestion from './AddSurveyQuestion';
 import Navbar from './components/Navbar';
-import AuthRoute from './AuthRoute';
+import AuthRoute from './Authentication/AuthRoute';
 
 const App = () => {
 	return (

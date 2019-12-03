@@ -165,3 +165,11 @@ export const googleLogin = async resp => {
 	const json = await response.json();
 	return json;
 };
+
+/*
+ * check if a authorized user is logged in
+ */
+export const authorized = async (token) =>{
+	const response = await fetch('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' + token);
+	return await response.json();
+};

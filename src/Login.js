@@ -12,6 +12,7 @@ const Login = props => {
 
 	const onClickLogin = async resp => {
 		// make authentication request to backend
+		sessionStorage.setItem('PMMCAdminToken', resp['Zi']['id_token']);
 		const googleResponse = await googleLogin(resp);
 		console.log(googleResponse);
 		// history.push('/dashboard');

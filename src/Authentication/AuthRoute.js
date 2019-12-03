@@ -1,20 +1,15 @@
 import React, { useState } from 'react';
 import { Redirect, Route } from 'react-router';
+import PropTypes from 'prop-types';
+import AuthPage from './AuthPage'
 
-
-let i = 0;
 const AuthRoute = ({component: Component, ...other}) => {
-	function checkAuthenticated() {
-		// check if the correct user is logged in
-		console.log(document.cookie);
-	}
-
 	return (
 		<Route
 			render={
 				(routeProps)=>{
-					if(checkAuthenticated()){
-						return (<Component {...routeProps}/>);
+					if(sessionStorage.getItem('PMMCAdminToken')){
+						return (<AuthPage RenderComponent={Component} {...routeProps}/>);
 					}
 					else {
 						return(<Redirect to={'/login'}/>);
@@ -24,6 +19,10 @@ const AuthRoute = ({component: Component, ...other}) => {
 			{...other}
 		/>
 	);
+};
+
+AuthRoute.propTypes = {
+	component: PropTypes.any.isRequired
 };
 
 export default AuthRoute;
