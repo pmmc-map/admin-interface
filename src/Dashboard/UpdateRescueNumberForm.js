@@ -1,21 +1,50 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
 
-const UpdateRescueNumberForm = ({ numRescues }) => {
+import { updateNumRescues, getRescueCounts } from '../api';
+
+const UpdateRescueNumberForm = () => {
+	const [numRescues, setNumRescues] = useState(0);
 	const [newNumber, setNewNumber] = useState(null);
 	const [errMessage, setErrMessage] = useState('');
 	const [successMessage, setSuccessMessage] = useState('');
+
+	useEffect(() => {
+		const getCurCount = async () => {
+			try {
+				const rescuesResponse = await getRescueCounts();
+				const counts = await rescuesResponse.counts;
+				if (!rescuesResponse || !counts)
+					throw 'cant get number of rescues';
+				const rescueCounts = counts.filter(
+					count => count.name === 'num_rescues'
+				);
+				setNumRescues(rescueCounts[0].total);
+			} catch (err) {
+				setNumRescues(0);
+			}
+		};
+		getCurCount();
+	}, []);
 
 	const onSubmit = () => {
 		setErrMessage('');
 		setSuccessMessage('');
 
-		if (!newNumber || !Number(newNumber)) {
-			setErrMessage('Please enter a valid number');
-			return;
-		}
+		const sendNewCount = async () => {
+			const countsResponse = await updateNumRescues(newNumber);
+			if (!countsResponse) throw 'Cant update number of rescues';
+			setSuccessMessage('Successfully updated number of rescues');
+			setNumRescues(newNumber);
+		};
 
-		setSuccessMessage('Successfully updated number of rescues');
+		try {
+			if (!newNumber || !Number(newNumber)) {
+				throw 'Cant update number of rescues';
+			}
+			sendNewCount();
+		} catch (err) {
+			setErrMessage('Please enter a valid number');
+		}
 	};
 
 	return (
@@ -62,10 +91,6 @@ const UpdateRescueNumberForm = ({ numRescues }) => {
 			<p className='has-text-success'>{successMessage}</p>
 		</div>
 	);
-};
-
-UpdateRescueNumberForm.propTypes = {
-	numRescues: PropTypes.number.isRequired,
 };
 
 export default UpdateRescueNumberForm;
