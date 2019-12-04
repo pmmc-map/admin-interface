@@ -1,4 +1,4 @@
-const BASE_API_URL = 'http://127.0.0.1:5000';
+const BASE_API_URL = 'https://www.pmmc-map.xyz';
 
 /*
  * add seal information
@@ -169,7 +169,9 @@ export const googleLogin = async resp => {
 /*
  * check if a authorized user is logged in
  */
-export const authorized = async (token) =>{
-	const response = await fetch('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' + token);
+export const authorized = async token => {
+	const response = await fetch(
+		'https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' + token
+	);
 	return await response.json();
 };
