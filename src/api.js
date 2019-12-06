@@ -1,4 +1,4 @@
-const BASE_API_URL = 'http://127.0.0.1:5000';
+const BASE_API_URL = 'https://www.pmmc-map.xyz';
 
 /*
  * add seal information
@@ -151,25 +151,19 @@ export const sendEmail = async email => {
  * login
  */
 export const googleLogin = async resp => {
+	console.log(resp);
 	const response = await fetch(BASE_API_URL + '/flask/auth', {
-		// method: 'POST',
-		// mode: 'cors',
+		method: 'POST',
+		mode: 'cors',
 		headers: {
 			'Content-Type': 'application/json',
-			// 'Access-Control-Allow-Origin': '*',
+			'Access-Control-Allow-Origin': '*',
 			Authorization: JSON.stringify(resp),
 		},
-		// withCredentials: true,
+		withCredentials: true,
 	});
 
 	const json = await response.json();
+	console.log(json);
 	return json;
-};
-
-/*
- * check if a authorized user is logged in
- */
-export const authorized = async (token) =>{
-	const response = await fetch('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' + token);
-	return await response.json();
 };
