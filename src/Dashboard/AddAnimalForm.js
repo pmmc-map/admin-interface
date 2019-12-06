@@ -78,14 +78,11 @@ const AddAnimalForm = () => {
 
 				return field;
 			});
+			setInfoValues(newInfoValues);
 		} catch (err) {
 			setErrMessage(err);
 			return;
 		}
-		console.log(infoValues);
-
-		setInfoValues(newInfoValues);
-		setSuccessMessage('haha');
 
 		const recordNewAnimal = async () => {
 			try {
@@ -111,7 +108,7 @@ const AddAnimalForm = () => {
 			}
 		};
 
-		// recordNewAnimal();
+		recordNewAnimal();
 	};
 
 	return (
