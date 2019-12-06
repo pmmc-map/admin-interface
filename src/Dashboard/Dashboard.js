@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import DataDownloadForm from './DataDownloadForm';
 import AddAnimalForm from './AddAnimalForm';
@@ -15,7 +16,7 @@ const Dashboard = () => {
 				<div className='columns'>
 					<ModifySurveyLinks />
 					<AddAnimalForm />
-					<UpdateRescueNumberForm numRescues={39} />
+					<UpdateRescueNumberForm />
 				</div>
 			</div>
 		</>

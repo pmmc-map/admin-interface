@@ -143,7 +143,7 @@ const QuestionDetail = ({ qid, text }) => {
 			<QuestionEdit
 				text={text}
 				onSubmit={onSubmitQuestion}
-				hasError={errorText}
+				hasError={!!errorText}
 			/>
 			<p className='has-text-success'>{successText}</p>
 			<p className='has-text-danger'>{errorText}</p>

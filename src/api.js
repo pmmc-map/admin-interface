@@ -28,6 +28,43 @@ export const addNewRescue = async (name, location, year, type, notes) => {
 };
 
 /*
+ * update rescue counts
+ */
+export const updateNumRescues = async newCount => {
+	const response = await fetch(BASE_API_URL + '/admin/count/num_rescues', {
+		method: 'POST',
+		mode: 'cors',
+		headers: {
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Origin': '*',
+		},
+		body: JSON.stringify({
+			new_total: newCount,
+		}),
+		withCredentials: true,
+	});
+	const json = await response.json();
+	const successResponse = await json.success;
+	return successResponse;
+};
+
+/*
+ * get rescue counts
+ */
+export const getRescueCounts = async () => {
+	const response = await fetch(BASE_API_URL + '/admin/count', {
+		method: 'GET',
+		mode: 'cors',
+		headers: {
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Origin': BASE_API_URL + '*',
+		},
+		withCredentials: true,
+	});
+	return await response.json();
+};
+
+/*
  * survey functions
  */
 

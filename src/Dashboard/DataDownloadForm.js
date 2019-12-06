@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { sendEmail } from '../api';
 
 const DataDownloadForm = () => {
 	const [email, setEmail] = useState('');
@@ -9,12 +10,19 @@ const DataDownloadForm = () => {
 		setErrorText('');
 		setSuccessText('');
 		const emailRe = /[\S]+([@])(\S)+(\.)\S+$/;
-		if (email.length < 5 || !emailRe.exec(email)) {
+		const makeEmailRequest = async () => {
+			const emailResponse = sendEmail(email);
+			if (!emailResponse) throw 'Cant send email';
+		};
+		try {
+			if (email.length < 5 || !emailRe.exec(email)) {
+				throw 'invalid email error';
+			}
+			makeEmailRequest();
+			setSuccessText('Email sent. Check your inbox in a few minutes');
+		} catch (err) {
 			setErrorText('Please submit a valid email address');
-			return;
 		}
-
-		setSuccessText('Email sent. Check your inbox in a few minutes');
 	};
 
 	return (
