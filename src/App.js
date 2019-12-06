@@ -15,7 +15,7 @@ const App = () => {
 			<Navbar />
 			<Switch>
 				<Route path='/login' component={Login} />
-				<AuthRoute path={['/dashboard', '/']} component={Dashboard} />
+				<AuthRoute exact path={['/dashboard', '/']} component={Dashboard} />
 				<AuthRoute exact path='/survey' component={SurveyDashboard} />
 				<AuthRoute path='/survey/new' component={AddSurveyQuestion} />
 			</Switch>

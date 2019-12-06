@@ -24,7 +24,7 @@ const AuthPage = ({RenderComponent: RenderComponent, ...other}) => {
 				return null;
 			}
 
-			alert('Sorry, You are not authorized to login.');
+			alert('Sorry, you are not authorized to login.');
 		}).finally(()=>{
 			setAuthenticating(false);
 		});
