@@ -20,10 +20,13 @@ const SurveyDashboard = () => {
 
 	const onClickQuestion = qid => {
 		setSelectedQuestion(questions.filter(q => q.qid === qid)[0]);
-		setQuestions(q => {
-			if (q.qid === qid) q.isSelected = true;
-			return q;
-		});
+		setQuestions(questions =>
+			questions.map(q => {
+				if (q.qid === qid) q.isSelected = true;
+				else q.isSelected = false;
+				return q;
+			})
+		);
 	};
 
 	return (
@@ -44,6 +47,11 @@ const SurveyDashboard = () => {
 						questions={questions}
 						onClick={onClickQuestion}
 					/>
+					<Link to='/survey/new'>
+						<button className='button is-success is-link'>
+							Add a new question
+						</button>
+					</Link>
 				</div>
 				<div className='column'>
 					<QuestionDetail {...selectedQuestion} />

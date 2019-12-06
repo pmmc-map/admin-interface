@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import './style.css';
 
 const Option = ({ qid, text, onClick, isSelected }) => (
 	<a
-		className={'panel-block' + (isSelected ? ' is-active' : '')}
+		className={`panel-block${isSelected ? ' is-selected' : ''}`}
 		onClick={() => onClick(qid)}
 	>
+		{console.log(isSelected)}
 		<span className='panel-icon'>
 			<i className='fas fa-book' aria-hidden='true'>
 				{' '}
