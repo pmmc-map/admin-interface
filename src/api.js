@@ -3,25 +3,35 @@ const BASE_API_URL = 'https://www.pmmc-map.xyz';
 /*
  * add seal information
  */
-export const addNewRescue = async (name, location, year, type, notes) => {
-	const response = await fetch(BASE_API_URL + '/api/animal_locations', {
-		method: 'POST',
-		mode: 'cors',
-		headers: {
-			'Content-Type': 'application/json',
-			'Access-Control-Allow-Origin': '*',
-		},
-		body: JSON.stringify({
-			animal_name: name,
-			location_name: location,
-			placement_year: year,
-			animal_type: type,
-			animal_notes: notes,
-			lat: 0,
-			long: 0,
-		}),
-		withCredentials: true,
-	});
+export const addNewRescue = async (
+	name,
+	location,
+	address,
+	year,
+	type,
+	notes
+) => {
+	const response = await fetch(
+		BASE_API_URL + '/api/animal_locations/address',
+		{
+			method: 'POST',
+			mode: 'cors',
+			headers: {
+				'Content-Type': 'application/json',
+				'Access-Control-Allow-Origin': '*',
+			},
+			body: JSON.stringify({
+				animal_name: name,
+				location_name: location,
+				address: address,
+				placement_year: year,
+				animal_type: type,
+				animal_notes: notes,
+				animal_images: '',
+			}),
+			withCredentials: true,
+		}
+	);
 	const json = await response.json();
 	const successResponse = await json.success;
 	return successResponse;
