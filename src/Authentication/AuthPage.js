@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
-import {authorized} from '../api';
+import {googleLogin} from '../api';
 
 
 /**
@@ -14,10 +14,18 @@ const AuthPage = ({RenderComponent: RenderComponent, ...other}) => {
 	const [loggedin, setLoggedin] = useState(false);
 	const [authenticating, setAuthenticating] = useState(true);
 	const init = ()=>{
-		authorized(sessionStorage.getItem('PMMCAdminToken')).then((result)=>{
-			if(!result['error_description']){ //&& result['email'] === 'pmmc@gmail.com'){
-				setLoggedin(true);
+		googleLogin(JSON.parse(sessionStorage.getItem('PMMCAdminLogin'))).then((result)=>{
+			console.log('auth result:', result);
+			if(result.error){
+				console.log('error');
 			}
+			else if(result.authorized){
+				setLoggedin(true);
+				return null;
+			}
+
+			alert('Sorry, You are not authorized to login.');
+		}).finally(()=>{
 			setAuthenticating(false);
 		});
 	};
@@ -31,7 +39,7 @@ const AuthPage = ({RenderComponent: RenderComponent, ...other}) => {
 		return (<RenderComponent {...other}/>);
 	}
 
-	return (<Redirect to={'/login'}/>);
+	return (<Redirect to={'/login' + '?a=' + other.match.path}/>);
 
 };
 
