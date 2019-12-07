@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import GoogleLogin from 'react-google-login';
 
 import { GOOGLE_LOGIN_CLIENT_ID } from './constants';
-import {useLocation, Redirect} from 'react-router-dom';
+import { useLocation, Redirect } from 'react-router-dom';
 import { googleLogin } from './api';
 
 const Login = props => {
@@ -21,30 +21,44 @@ const Login = props => {
 
 	let query = useQuery();
 
-	if(isLoggedIn){
-
-		return (<Redirect to={query.get('a')?query.get('a'):'/dashboard'}/>);
+	if (isLoggedIn) {
+		return <Redirect to={query.get('a') ? query.get('a') : '/dashboard'} />;
 	}
 
 	return (
-		<section className='hero is-info is-fullheight-with-navbar'>
+		<span
+			className='hero is-info is-fullheight-with-navbar'
+			style={{
+				textAlign: 'center',
+			}}
+		>
 			<div className='hero-body'>
-				<div
-					className='container'
-					style={{
-						justifyContent: 'center',
-						display: 'flex',
-					}}
-				>
-					<GoogleLogin
-						clientId={GOOGLE_LOGIN_CLIENT_ID}
-						buttonText='Login'
-						onSuccess={onClickLogin}
-						cookiePolicy='single_host_origin'
-					/>
+				<div className='container'>
+					<div className='box' style={{ margin: '0 25%' }}>
+						<h1 className='title is-1 has-text-info'>Login</h1>
+						<p>
+							Use your authorized Google account to login to the
+							admin dashboard
+						</p>
+						<div
+							className='field'
+							style={{
+								display: 'flex',
+								justifyContent: 'center',
+								margin: '2rem 0',
+							}}
+						>
+							<GoogleLogin
+								clientId={GOOGLE_LOGIN_CLIENT_ID}
+								buttonText='Login'
+								onSuccess={onClickLogin}
+								cookiePolicy='single_host_origin'
+							/>
+						</div>
+					</div>
 				</div>
 			</div>
-		</section>
+		</span>
 	);
 
 	// return (
