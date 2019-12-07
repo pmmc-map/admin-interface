@@ -1,6 +1,42 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
+const ModalDeleteFooter = ({
+	dismissModal,
+	onClickDelete,
+	isQuestionDeleted,
+}) => {
+	if (isQuestionDeleted) return null;
+	return (
+		<footer
+			className='modal-card-foot'
+			style={{
+				justifyContent: 'space-evenly',
+			}}
+		>
+			<button className='button is-medium' onClick={e => dismissModal(e)}>
+				Cancel
+			</button>
+			<button
+				className='button is-danger is-medium'
+				onClick={e => {
+					onClickDelete();
+					e.preventDefault();
+				}}
+			>
+				Delete
+			</button>
+		</footer>
+	);
+};
+
+ModalDeleteFooter.propTypes = {
+	dismissModal: PropTypes.func.isRequired,
+	onClickDelete: PropTypes.func.isRequired,
+
+	isQuestionDeleted: PropTypes.bool.isRequired,
+};
+
 const ModalDeleteOptions = ({
 	dismissModal,
 	onClickDelete,
@@ -42,30 +78,11 @@ const ModalDeleteOptions = ({
 				</>
 			)}
 		</section>
-		{isQuestionDeleted ? null : (
-			<footer
-				className='modal-card-foot'
-				style={{
-					justifyContent: 'space-evenly',
-				}}
-			>
-				<button
-					className='button is-medium'
-					onClick={e => dismissModal(e)}
-				>
-					Cancel
-				</button>
-				<button
-					className='button is-danger is-medium'
-					onClick={e => {
-						onClickDelete();
-						e.preventDefault();
-					}}
-				>
-					Delete
-				</button>
-			</footer>
-		)}
+		<ModalDeleteFooter
+			dismissModal={dismissModal}
+			onClickDelete={onClickDelete}
+			isQuestionDeleted={isQuestionDeleted}
+		/>
 	</>
 );
 

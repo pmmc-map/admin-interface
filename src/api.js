@@ -5,8 +5,8 @@ const BASE_API_URL = 'https://www.pmmc-map.xyz';
  */
 export const addNewRescue = async (
 	name,
-	location,
 	address,
+	location,
 	year,
 	type,
 	notes

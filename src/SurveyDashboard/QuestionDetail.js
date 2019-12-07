@@ -35,7 +35,7 @@ const QuestionEdit = ({ text, onSubmit, hasError }) => {
 				<div className='field is-narrow'>
 					<div className='control is-fullwidth'>
 						<button
-							className='button is-primary'
+							className='button is-info'
 							onClick={() => onSubmit(newQuestion)}
 						>
 							Update question
@@ -63,7 +63,9 @@ const OptionsList = ({ options }) => (
 				<tbody>
 					{options.map(o => (
 						<tr key={o.oid}>
-							<td key={o.oid}>{o.text}</td>
+							<td className='option-item' key={o.oid}>
+								<p>{o.text} </p>
+							</td>
 						</tr>
 					))}
 				</tbody>

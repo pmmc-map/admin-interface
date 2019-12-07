@@ -26,12 +26,12 @@ AnimalInput.propTypes = {
 const AddAnimalForm = () => {
 	const [infoValues, setInfoValues] = useState(
 		[
-			'Name',
-			'Location name',
+			'Animal Name',
 			'Full location address',
+			'Location name (for display)',
 			'Placement year',
-			'Type',
-			'Notes',
+			'Animal Species',
+			'Notes (for display)',
 		].map(v => ({
 			fieldName: v,
 			err: false,
@@ -93,7 +93,10 @@ const AddAnimalForm = () => {
 					infoValues[2].val,
 					Number(infoValues[3].val),
 					infoValues[4].val[0].toUpperCase() +
-						infoValues[4].val.substring(infoValues[4].val),
+						infoValues[4].val.substring(
+							1,
+							infoValues[4].val.length
+						),
 					infoValues[5].val
 				);
 				if (successResponse)
