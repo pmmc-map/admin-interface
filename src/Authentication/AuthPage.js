@@ -25,6 +25,7 @@ const AuthPage = ({RenderComponent: RenderComponent, ...other}) => {
 			}
 
 			alert('Sorry, you are not authorized to login.');
+			sessionStorage.removeItem('PMMCAdminLogin');
 		}).finally(()=>{
 			setAuthenticating(false);
 		});
