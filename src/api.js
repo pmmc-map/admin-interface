@@ -1,4 +1,4 @@
-const BASE_API_URL = 'https://www.pmmc-map.xyz';
+const BASE_API_URL = 'https://pmmc-flask-backend.herokuapp.com';
 
 /*
  * add seal information
@@ -169,6 +169,57 @@ export const addNewOption = async (qid, optionText) => {
 	const json = await response.json();
 	const successResponse = await json.success;
 	return successResponse;
+};
+
+/**
+ * Obtains the survey data for CSV downloading
+ */
+export const getSurveyData = async () => {
+	const response = await fetch(`${BASE_API_URL}/api/admin/survey_responses`, {
+		method: 'GET',
+		mode: 'cors',
+		headers: {
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Origin': '*',
+		},
+		withCredentials: true,
+	});
+	const data = await response.json();
+	return data;
+};
+
+/**
+ * Obtains the location/pin data for CSV downloading
+ */
+export const getPinData = async () => {
+	const response = await fetch(`${BASE_API_URL}/api/admin/pin_responses`, {
+		method: 'GET',
+		mode: 'cors',
+		headers: {
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Origin': '*',
+		},
+		withCredentials: true,
+	});
+	const data = await response.json();
+	return data;
+};
+
+/**
+ * Obtains the donation visit data for CSV downloading
+ */
+export const getDonationVisits = async () => {
+	const response = await fetch(`${BASE_API_URL}/api/admin/donation_visits`, {
+		method: 'GET',
+		mode: 'cors',
+		headers: {
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Origin': '*',
+		},
+		withCredentials: true,
+	});
+	const data = await response.json();
+	return data;
 };
 
 /*
